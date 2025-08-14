@@ -1,10 +1,11 @@
 import React from "react";
+import Facepic from "../../public/assets/images/sinanface.JPG";
 
 function Home() {
   return (
     <div>
       <img
-        src="/public/sinanface.JPG"
+        src={Facepic}
         alt="face"
         className="h-80 w-60 object-cover rounded-2xl"
       />
