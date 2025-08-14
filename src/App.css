@@ -1,0 +1,6 @@
+@import "tailwindcss";
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: #292929;
+  color: gainsboro;
+}
