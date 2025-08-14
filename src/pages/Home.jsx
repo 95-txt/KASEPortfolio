@@ -4,7 +4,7 @@ function Home() {
   return (
     <div>
       <img
-        src="/src/assets/sinanface.JPG"
+        src="/public/sinanface.JPG"
         alt="face"
         className="h-80 w-60 object-cover rounded-2xl"
       />
