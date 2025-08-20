@@ -6,21 +6,17 @@ import { useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function HomeAbout() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-  const [pic1ref, pic1inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const controls = useAnimation();
   const controls2 = useAnimation();
 
   useEffect(() => {
-    if (pic1inView) {
+    if (inView) {
       const sequence = async () => {
         // Animate first div
         await controls.start({
           clipPath: "inset(0 0 0 0%)",
-          transition: { duration: 0.8, ease: "easeOut", delay: 0.5 },
+          transition: { duration: 0.8, ease: "easeOut", delay: 0.2 },
         });
 
         // Animate second div
@@ -32,13 +28,13 @@ export default function HomeAbout() {
 
       sequence();
     }
-  }, [pic1inView, controls, controls2]);
+  }, [inView, controls, controls2]);
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 grid grid-cols-1 md:grid-cols-2">
+    <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Column - Big Number */}
       <div className="relative ">
-        <p className="absolute -bottom-50 -left-30 text-[40vw] md:text-[40vw] text-gray-300">
+        <p className="absolute -bottom-50 -left-30 text-[40vw] md:text-[40vw] text-gray-200">
           <span ref={ref}>
             {inView ? <CountUp end={95} duration={5} /> : 0}
           </span>
@@ -73,7 +69,7 @@ export default function HomeAbout() {
         </motion.div>
 
         {/* Row 3 - Link */}
-        <div ref={pic1ref} className=" text-right">
+        <div className=" text-right">
           <a
             href="about"
             className=" inline-block text-2xl mt-20 tracking-wider font-semibold hover:underline"

@@ -1,13 +1,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import HomeAbout from "../components/HomeAbout";
+import HomeProjects from "../components/HomeProjects";
+import Footer from "../components/Footer";
+import HomeBrands from "../components/HomeBrands";
 
 export default function Home() {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   return (
     <>
-      <div className="bg-gray-50 min-h-screen flex flex-col justify-between items-center">
+      <div className=" min-h-screen flex flex-col justify-between items-center">
         {/* Top Section */}
         <motion.div
           className="w-full px-8 pt-8 text-left"
@@ -48,7 +51,9 @@ export default function Home() {
         </motion.div>
       </div>
       <HomeAbout />
-      <div className="h-screen"></div>
+      <HomeProjects />
+      <HomeBrands />
+      <Footer />
     </>
   );
 }
