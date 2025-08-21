@@ -77,7 +77,7 @@ function Footer() {
             </a>
           </div>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-sm font-sans text-gray-500">
             &#169; {new Date().getFullYear()} MUHAMMED SINAN. All rights
             reserved.
           </p>
