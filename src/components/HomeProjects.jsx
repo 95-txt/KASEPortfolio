@@ -1,13 +1,28 @@
-import { motion } from "framer-motion";
+import { motion, useTransform, useScroll } from "framer-motion";
 import Brain from "/assets/images/brain.png";
 import eeeleague from "/assets/images/eeeleague.jpg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // import { ReactTyped } from "react-typed";
 
 function HomeProjects() {
+  const [projects, setProjects] = useState([]);
   const items = ["Project One", "Project Two", "Project Three", "Project Four"];
 
-  const [projects, setProjects] = useState([]);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"], // Adjust these offsets for desired trigger points
+  });
+
+  // Maps scroll progress (0 to 1) to a clip-path from 0% to 100%
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [
+      "polygon(0 0, 0% 0, 0% 100%, 0% 100%)",
+      "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+    ]
+  );
 
   useEffect(() => {
     fetch("/data/projects.json")
@@ -19,23 +34,25 @@ function HomeProjects() {
   return (
     <>
       <div className="px-10 md:px-20 lg:px-50">
-        <motion.div
-          className="text-[6rem] text-right py-15"
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          viewport={{ once: true }}
-        >
+        <motion.div className="text-[6rem] text-right py-15">
           Projects
+        </motion.div>
+        <motion.div ref={ref} style={{ clipPath }}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore eius
+          laboriosam distinctio molestias, cupiditate deserunt dicta non labore
+          corrupti repudiandae, soluta tempora aspernatur doloremque, maxime
+          laborum necessitatibus minus voluptate ducimus. Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Sunt ea inventore iusto, iure sit
+          facilis vitae cumque veniam. Vel, impedit? Sit nesciunt ipsa optio
+          ullam esse officia nulla ab quibusdam.
         </motion.div>
 
         <div className="flex flex-wrap gap-5">
           <motion.div
-            className="group flex-35 hover:-translate-y-2 duration-300"
+            className="group flex-35 hover:-translate-y-2 duration-300 "
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
           >
             <a href="projects">
               <img
@@ -49,11 +66,10 @@ function HomeProjects() {
             </a>
           </motion.div>
           <motion.div
-            className="group flex-35 hover:-translate-y-2 duration-300"
+            className="group flex-35 hover:-translate-y-2 duration-300 "
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
           >
             <a href="projects">
               <img
@@ -75,13 +91,13 @@ function HomeProjects() {
           >
             <a
               href="projects"
-              className="text-2xl tracking-wider font-semibold hover:underline"
+              className="text-2xl tracking-wider font-semibold hover:underline "
             >
               SEE MORE PROJECTS →
             </a>
           </motion.div>
         </div>
-        <div className="flex flex-wrap gap-5 mt-50 pb-30">
+        <div className="flex flex-wrap gap-5 mt-50 pb-15">
           <ul className="flex-35 border-t-1 border-t-gray-400">
             {projects.map((project, i) => (
               <motion.li

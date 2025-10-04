@@ -12,9 +12,3 @@ body {
     transform: translateX(-120%);
   }
 }
-
-.sinan-scroll {
-  animation: slideLeft 1 linear both;
-  animation-timeline: scroll();
-  animation-range: 0px 1000px;
-}
