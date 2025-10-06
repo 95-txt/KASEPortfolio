@@ -8,6 +8,19 @@ import {
 } from "react-icons/fa";
 
 function Footer() {
+  const links = [
+    { href: "https://github.com/95-txt", icon: FaGithub },
+    { href: "https://linkedin.com/in/sinanmuhammed95", icon: FaLinkedin },
+    {
+      href: "https://wa.me/7025938934?text=Hi,%20I'm%20from%20your%20portfolio",
+      icon: FaWhatsapp,
+    },
+    { href: "https://behance.com/sinanmuhammed95", icon: FaBehance },
+    {
+      href: "https://www.instagram.com/95.eps?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      icon: FaInstagram,
+    },
+  ];
   return (
     <>
       <footer className="bg-gray-900 text-gray-300 py-6">
@@ -20,46 +33,17 @@ function Footer() {
           </p>
 
           <div className="flex justify-center space-x-6 my-10">
-            <a
-              href="https://github.com/95-txt"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              <FaGithub size={50} />
-            </a>
-            <a
-              href="https://linkedin.com/in/sinanmuhammed95"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              <FaLinkedin size={50} />
-            </a>
-            <a
-              href="https://wa.me/7025938934?text=Hi,%20I'm%20from%20your%20portfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              <FaWhatsapp size={50} />
-            </a>
-            <a
-              href="https://behance.com/sinanmuhammed95"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white "
-            >
-              <FaBehance size={50} />
-            </a>
-            <a
-              href="https://www.instagram.com/95.eps?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white"
-            >
-              <FaInstagram size={50} />
-            </a>
+            {links.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+              >
+                {<link.icon className="w-8 h-8 md:w-14 md:h-14" />}
+              </a>
+            ))}
           </div>
 
           <div className="flex justify-center space-x-6 mb-10 text-sm">

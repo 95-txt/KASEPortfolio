@@ -1,24 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Map route to page title
-  const pageTitles = {
-    "/": "HOME",
-    "/about": "ABOUT",
-    "/projects": "PROJECTS",
-    "/contact": "CONTACT",
-  };
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
-  const currentPage = pageTitles[location.pathname] || "";
+  // Map route to page title
+  const pageTitles = [
+    { "/": "HOME" },
+    { "/about": "ABOUT" },
+    { "/projects": "PROJECTS" },
+    { "/contact": "CONTACT" },
+  ];
 
   return (
-    <nav className="sticky top-0 z-50">
-      {/* Top Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center h-16 relative">
+    <nav className="sticky top-0 z-50 bg-neutral-100/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center h-16">
         {/* Desktop Menu (centered) */}
         <div className="hidden md:flex space-x-8 text-xl">
           <NavLink to="/">HOME</NavLink>
@@ -28,7 +29,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button (absolute right) */}
-        <div className="p-2 md:hidden absolute right-4">
+        <div className="w-full p-2 md:hidden text-right ">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-gray-700 focus:outline-none text-2xl"
@@ -45,18 +46,11 @@ export default function Navbar() {
         }`}
       >
         <div className="px-4 pb-4 flex flex-col space-y-2">
-          <NavLink to="/" onClick={() => setIsOpen(false)}>
-            HOME
-          </NavLink>
-          <NavLink to="/about" onClick={() => setIsOpen(false)}>
-            ABOUT
-          </NavLink>
-          <NavLink to="/projects" onClick={() => setIsOpen(false)}>
-            PROJECTS
-          </NavLink>
-          <NavLink to="/contact" onClick={() => setIsOpen(false)}>
-            CONTACT
-          </NavLink>
+          {pageTitles.map((title, i) => (
+            <NavLink key={i} to={Object.keys(title)[0]}>
+              {Object.values(title)[0]}
+            </NavLink>
+          ))}
         </div>
       </div>
     </nav>

@@ -55,9 +55,9 @@ function HomeBrands() {
   ];
   return (
     <>
-      <div className="sm:px-8 lg:px-50">
+      <div className="sm:px-8 md:px-50">
         <motion.div
-          className="text-[6rem] pb-15"
+          className="text-5xl md:text-[6rem] pb-15 pl-8 md:pl-0"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -65,14 +65,15 @@ function HomeBrands() {
         >
           Brands
         </motion.div>
-        <div className="pb-20 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 items-center">
+        <div className="pb-20 grid grid-cols-3 px-12 md:px-0 gap-8 md:gap-0 sm:grid-cols-4 lg:grid-cols-5 items-center">
           {brands.map((brand, i) => (
             <motion.div
-              className="px-20 py-15"
+              className="md:px-20 md:py-15"
               key={i}
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: i * 0.1 }}
+              viewport={{ once: true }}
             >
               <img
                 className="hover:drop-shadow-lg hover:scale-105 duration-300"
@@ -83,28 +84,33 @@ function HomeBrands() {
           ))}
         </div>
       </div>
+
       <Line />
-      <div className="sm:px-8 lg:px-50">
+
+      <div className="sm:px-8 md:px-50 md:mb-30">
         <motion.div
-          className="text-[4rem] mt-15 pb-5 text-center"
+          className="text-5xl md:text-[4rem] mt-15 md:mb-15 pb-5 text-center"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
           Tools
         </motion.div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 items-center text-gray-400 mb-20">
+        <div className="grid grid-cols-4 md:grid-cols-5 items-center text-gray-400 mb-20 px-12 md:px-0">
           {tools.map((Icon, i) => {
             return (
               <motion.div
-                className="px-20 py-15"
                 key={i}
-                initial={{ opacity: 0, y: 100 }}
+                // className="md:px-20 py-15"
+                className="flex justify-center py-6 md:py-12"
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: i * 0.1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.1 }}
               >
-                <div className=" hover:scale-110 duration-300">
-                  <Icon size={100} />
+                <div className=" hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-12 h-12 md:w-24 md:h-24" />
                 </div>
               </motion.div>
             );
